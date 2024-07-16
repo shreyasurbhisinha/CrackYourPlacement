@@ -1,0 +1,24 @@
+class Solution {
+public:
+bool ifmirror(TreeNode* p,TreeNode*q){
+    if(p==nullptr && q==nullptr){
+    return 1;
+}
+ if (p == nullptr || q == nullptr) {
+            return false;
+        }
+if(p->val!=q->val){
+    return 0;
+}
+return ifmirror(p->left,q->right) && ifmirror(p->right,q->left);
+
+    
+}
+    bool isSymmetric(TreeNode* root) {
+        if(root==nullptr){
+            return 1;
+        }
+        return ifmirror(root->left,root->right);
+        
+    }
+};

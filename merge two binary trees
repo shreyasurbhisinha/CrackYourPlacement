@@ -1,0 +1,20 @@
+class Solution {
+public:
+    TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) {
+        if(root1==nullptr && root2==nullptr){
+            return nullptr;
+        }
+        int val1=(root1!=nullptr)?root1->val:0;
+        int val2=(root2!=nullptr)?root2->val:0;
+        
+        TreeNode* nya=new TreeNode(val1 + val2);
+        
+       nya->left= mergeTrees((root1!=nullptr)?root1->left:0,(root2!=nullptr)?root2->left:0);
+        nya->right= mergeTrees((root1!=nullptr)?root1->right:nullptr,(root2!=nullptr)?root2->right:0);
+       
+        return nya;
+
+
+        
+    }
+};

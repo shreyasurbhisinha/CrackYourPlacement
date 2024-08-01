@@ -1,0 +1,42 @@
+lass Solution {
+public:
+    string reorganizeString(string s) {
+    int n=s.size();
+    typedef pair<int,char> p1;
+    vector<int> count(26,0);
+    for(auto a:s){
+        count[a-'a']++;
+        if(count[a-'a']>(n+1)/2){
+            return "";
+        }
+    }
+    priority_queue<p1,vector<p1>> pq;
+    for(char ch='a';ch<='z';ch++){
+        if(count[ch-'a']>0){
+            pq.push({count[ch-'a'],ch});
+        }
+    }
+    string ans="";
+    while(pq.size()>=2){
+        auto pa=pq.top();
+        pq.pop();
+        auto pb=pq.top();
+        pq.pop();
+        ans.push_back(pa.second);pa.first--;
+        ans.push_back(pb.second);pb.first--;
+        if(pa.first>0){
+            pq.push(pa);
+        }
+         if(pb.first>0){
+            pq.push(pb);
+        }
+
+    }
+    if(!pq.empty()){
+        ans.push_back(pq.top().second);
+    }
+    return ans;
+      
+        
+    }
+};
